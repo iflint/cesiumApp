@@ -1,3 +1,15 @@
 body {
 	margin: 0;
 }
+
+#bottomBar {
+	position: absolute;
+	width: 50%;
+	left: 25%;
+	bottom: 2em;
+	height: 2em;
+	z-index: 9000;
+	background: darkgray;
+	border-radius: 1em;
+	text-align: center;
+}
