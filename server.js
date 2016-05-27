@@ -14,6 +14,7 @@ var intialDataArray = [{
 	  description: '<div>lks dfjkls sdklf skldfj klsd</div>',
 	  x: 0,
 	  y: 0,
+	  z: 100,
 	  color: 'red',
 	  pixelSize: 5
 	},
@@ -22,6 +23,43 @@ var intialDataArray = [{
 	  description: '<div>bruh</div>',
 	  x: 20,
 	  y: 0,
+	  z: 100,
+	  color: 'red',
+	  pixelSize: 10
+	},
+	{
+	  name : 'hey',
+	  description: '<div>bruh</div>',
+	  x: 2,
+	  y: 3,
+	  z: 100,
+	  color: 'red',
+	  pixelSize: 10
+	},
+	{
+	  name : 'yo',
+	  description: '<div>bruhdfsdffsdf</div>',
+	  x: 55,
+	  y: -10,
+	  z: 100,
+	  color: 'red',
+	  pixelSize: 10
+	},
+	{
+	  name : 'd',
+	  description: '<div>brsdfduh</div>',
+	  x: -20,
+	  y: 0,
+	  z: 100,
+	  color: 'red',
+	  pixelSize: 10
+	},
+	{
+	  name : 'f',
+	  description: '<div>bruffffffffffffffh</div>',
+	  x: -10,
+	  y: -20,
+	  z: 100,
 	  color: 'red',
 	  pixelSize: 10
 	}

@@ -1,5 +1,7 @@
 
 // initializes the globe on the client
+var globe = new Cesium.Globe();
+globe.enableLighting = true;
 var viewer = new Cesium.Viewer('cesiumContainer', {
   animation: false,
   timeline: false,
@@ -11,9 +13,9 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   imageryProvider: new Cesium.MapboxImageryProvider({
   	mapId: 'mapbox.satellite',
   	accessToken: 'pk.eyJ1Ijoid29sdmVyaWFuMjMiLCJhIjoic3lSYnR0YyJ9.gwoi3oZpvvBRgntfVkXi9g'
-  })
+  }),
+  globe: globe
 });
-viewer.scene.fog.enabled = true;
 
 // utility functions
 function toggleRotate () {
@@ -21,6 +23,7 @@ function toggleRotate () {
 	var entityArray = viewer.entities.values;
 	var xCoordArray = [];
 	var currentEntity;
+	var newEntity;
 	var smallestDiff;
 
 	for (i=0; i < entityArray.length; i++) {
@@ -32,7 +35,7 @@ function toggleRotate () {
 	// function to remove the following listener is returned by the add lister function and stored in stopper
 	var stopper = viewer.clock.onTick.addEventListener(function(clock) {
 	  var now = Date.now();
-	  var spinRate = 0.03;
+	  var spinRate = 0.05;
 	  var delta = (now - lastNow) / 1000;
 	  lastNow = now;
 
@@ -41,15 +44,17 @@ function toggleRotate () {
 	  	var nX = xCoordArray[i];
 	  	var thisDiff = Math.abs(nX - cX);
 	  	if (!smallestDiff || thisDiff < smallestDiff) {
-	  		if (currentEntity != entityArray[i].id) {
-	  			smallestDiff = thisDiff;
-	  			currentEntity = entityArray[i].id;
-	  			console.log(currentEntity, thisDiff, smallestDiff);
-	  			
-				  viewer.selectedEntity = viewer.entities.getById(currentEntity);
-				  console.log(viewer.selectedEntity);
-	  		}
+  			smallestDiff = thisDiff;
+  			newEntity = entityArray[i].id;
+  			
 	  	}
+	  }
+	  if (newEntity != currentEntity) {
+	  	console.log(currentEntity, thisDiff, smallestDiff);
+	  	currentEntity = newEntity;
+	  	smallestDiff = false;
+		  viewer.selectedEntity = viewer.entities.getById(currentEntity);
+		  console.log(viewer.selectedEntity);
 	  }
 	  viewer.scene.camera.rotate(Cesium.Cartesian3.UNIT_Z, -spinRate * delta);
 	});
